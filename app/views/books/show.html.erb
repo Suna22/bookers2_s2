@@ -5,7 +5,7 @@
     <h2>New book</h2>
     <%= render 'form', book: Book.new %>
   </div>
-  
+
 
   <div class='col-xs-9'>
 		<h2>Book detail</h2>
@@ -13,9 +13,9 @@
       <%= render 'detail', book: @book %>
     </div>
 
-    <%= form_with(model: [@book, @comment], local: true) do |f|%>
-      <%= f.text_area :body %>
-      <%= f.submit "送信", class: "btn btn-primary", id: "comment__textarea" %>
+    <%= form_with(model: [@book, @comment]) do |f|%>
+      <%= f.text_area :body, id: "comment__textarea" %>
+      <%= f.submit "送信", class: "btn btn-primary" %>
     <% end %>
     <div class="comment__table">
       <%= render 'book_comments/table', book_comments: @book.book_comments%>

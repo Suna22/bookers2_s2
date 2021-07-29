@@ -8,14 +8,9 @@
 
 9.times do |i|
 	User.create!(
-		name:"#{i}#{i}",
+		name: "#{i}#{i}",
 		email: "#{i}@#{i}",
 		password: "#{i}#{i}#{i}#{i}#{i}#{i}",
     introduction: "週に#{i}冊は本読んでます！よろしくお願いします！",
-    postal_code: "105-0011",
-    prefecture_code: 13,
-    state: "港区",
-    city: "芝公園",
-    street: "4-2-8"
 	 )
 end
