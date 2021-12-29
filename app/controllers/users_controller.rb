@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :screen_user, only: [:edit, :update]
-
+  
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-
-    if (@user != current_user) && current_user.mutuals?(@user)
-      @room = current_user.room_with(@user)
-    end
   end
 
   def index
