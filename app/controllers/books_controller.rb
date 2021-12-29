@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
 
   def index
-    @books = Book.all.sort_by{|book| book.favorites.count}.reverse
+    # 6日前以降の投稿を表示。また、いいね数多い順にするため、-が必要。
+    @books = Book.where("created_at >= ?", Date.today-6).sort_by {|book| -book.favorites.count}
     @book = Book.new
   end
 
