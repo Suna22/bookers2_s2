@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
 
   def index
-    @books = Book.all
+    @books = Book.all.sort_by{|book| book.favorites.count}.reverse
     @book = Book.new
   end
 
