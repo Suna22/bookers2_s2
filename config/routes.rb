@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get 'followings'
     end
     resource :relationships, only: [:create, :destroy]
+    resource :room, only: [:create, :show] do
+      resources :chats, only: [:create]
+    end
   end
   
   resources :books do

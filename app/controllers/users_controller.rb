@@ -8,15 +8,7 @@ class UsersController < ApplicationController
     @book = Book.new
 
     if (@user != current_user) && current_user.mutuals?(@user)
-      rooms = Room.includes(:users)
-      @room = nil
-      rooms.each do |room|
-        users = room.users
-        if users.include?(@user) && users.include?(current_user)
-          @room = room
-          break
-        end
-      end
+      @room = current_user.room_with(@user)
     end
   end
 

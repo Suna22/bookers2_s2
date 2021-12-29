@@ -43,5 +43,16 @@ class User < ApplicationRecord
       relationship.destroy if relationship
     end
   end
+  
+  def room_with(another_user)
+    rooms = Room.includes(:users)
+    rooms.each do |room|
+      users = room.users
+      if users.include?(self) && users.include?(another_user)
+        return room
+      end
+    end
+    nil
+  end
 
 end

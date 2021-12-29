@@ -33,10 +33,10 @@
               <% if user.following?(current_user) %>
                 <% chat_str = "Chatを始める" %>
                 <% if @room %>
-                  <%= link_to chat_str, user_rooms_path(@room, user: user)%>
+                  <%= link_to chat_str, user_room_path(user)%>
                 <% else %>
                   aaa
-                  <%= link_to chat_str, rooms_path(user: user), method: :POST %>
+                  <%= link_to chat_str, user_room_path(user), method: :POST %>
                 <% end %>
               <% end %>
 
