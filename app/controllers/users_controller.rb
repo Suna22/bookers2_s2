@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    
+    @today_count = @books.term(Date.current, Date.current+1).count
+    @yesterday_count = @books.term(Date.current-1, Date.current).count
+    @week_count = @books.term(Date.current-6, Date.current+1).count
+    @lastweek_count = @books.term(Date.current-13, Date.current-6).count
   end
 
   def index
