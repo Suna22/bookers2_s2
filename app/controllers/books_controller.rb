@@ -10,6 +10,10 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @comment = BookComment.new
+
+    unless current_user == @book.user
+      @book.update(views: @book.views + 1)
+    end
   end
 
   def edit
