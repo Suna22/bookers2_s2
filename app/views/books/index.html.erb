@@ -11,7 +11,8 @@
 
   <div class='col-xs-9'>
     <h2>Books</h2>
-
+    <%= link_to "新しい順", sort_books_path(sort: "date") %> |
+    <%= link_to "評価の高い順", sort_books_path(sort: "star") %>
     <%= render 'index', books: @books%>
   </div>
 </div>

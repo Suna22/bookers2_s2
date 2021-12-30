@@ -10,4 +10,5 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     Favorite.where(user_id: user.id, book_id: self.id).exists?
   end
+  
 end
