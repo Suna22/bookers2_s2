@@ -1,0 +1,24 @@
+<%= form_with model:group, local:true do |f| %>
+  <div class="field row">
+    <%= f.label :name, "グループ名" %>
+    <%= f.text_field :name, class: 'col-xs-12 book_title' %>
+  </div>
+
+  <div class="field row">
+    <%= f.label :introduction, "紹介文" %>
+    <%= f.text_area :introduction, class: 'col-xs-12 book_body'%>
+  </div>
+
+  <div class="field row">
+    <%= f.label :image, "グループ画像" %>
+    <%= f.attachment_field :image, class: "group_image" %>
+  </div>
+
+  <div class="actions row">
+    <% if group.id %>
+    <%= f.submit "Update Group", class: 'btn btn-primary col-xs-12'%>
+    <% else %>
+    <%= f.submit "Create Group", class: 'btn btn-primary col-xs-12'%>
+    <% end %>
+  </div>
+<% end %>
