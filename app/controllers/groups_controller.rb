@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :owner?, only: [:edit]
   def index
-   @groups = current_user.groups
+   @groups = Group.all
   end
 
   def new
@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @members = @group.users
   end
 
   def edit
@@ -29,6 +30,17 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    GroupUser.create(group_id: params[:id].to_i, user_id: current_user.id)
+    redirect_to groups_path
+  end
+
+  def leave
+    @gu = GroupUser.find_by(group_id: params[:id].to_i, user_id: current_user.id)
+    @gu.destroy
+    redirect_to groups_path
+  end
+
   private
     def group_params
       params.require(:group).permit(:name, :introduction, :image).merge(owner_id: current_user.id)
@@ -36,7 +48,7 @@ class GroupsController < ApplicationController
 
     def owner?
       @group = Group.find(params[:id])
-      redirect_to groups_path unless @group.owner_id == current_user.id
+      redirect_to groups_path unless @group.owned?(current_user)
     end
 
 end
