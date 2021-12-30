@@ -42,6 +42,17 @@ class BooksController < ApplicationController
     redirect_to books_url
   end
 
+  def sort
+    @book = Book.new
+    if params[:sort] == "date"
+      @books = Book.all
+    elsif params[:sort] == "star"
+      @books = Book.all.sort_by {|book| book.star}
+    end
+    @books = @books.reverse
+    render "index"
+  end
+
   private
     def book_params
       params.require(:book).permit(:title, :body, :star)

@@ -11,8 +11,11 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create, :destroy]
   end
-  
+
   resources :books do
+    collection do
+      get "sort"
+    end
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create]
   end
