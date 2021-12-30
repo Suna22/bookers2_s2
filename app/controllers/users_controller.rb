@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @week = []
     @labels = []
     (-6..0).each do |i|
-      day_count = @books.term(Date.current+i, Date.current+i+1).count
+      day_count = @books.term(Date.current+i).count
       @week.push(day_count)
       @labels.push((-i).to_s + '日前')
     end
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     @yesterday_count = @week[-2]
     @week_count = @week.sum
     @lastweek_count = @books.term(Date.current-13, Date.current-6).count
-
   end
 
   def index
@@ -48,6 +47,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def day_search
+    @user = User.find(params[:id])
+    @books = @user.books
+    @day_count = @books.term(params[:date].to_date).count
   end
 
   private

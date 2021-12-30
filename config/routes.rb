@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create, :destroy]
   end
-  
+
   resources :books do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create]
@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'home/about'
 
+  get "users/:id/search" => "users#day_search", as: "search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
