@@ -53,9 +53,15 @@ class BooksController < ApplicationController
     render "index"
   end
 
+  def tag_search
+    @book = Book.new
+    @books = Book.where("category like?", "%#{params[:tag]}%")
+    render "index"
+  end
+
   private
     def book_params
-      params.require(:book).permit(:title, :body, :star)
+      params.require(:book).permit(:title, :body, :category, :star)
     end
 
     def screen_user(book)
