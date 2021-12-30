@@ -9,6 +9,38 @@
     <%= f.text_area :body, class: 'col-xs-12 book_body'%>
   </div>
 
+  <% if book.id %>
+    <div class="row relative-post-evaluation">
+    <span id="star-rate-<%= book.id %>"></span>
+    <script>
+      $('#star-rate-<%= book.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('star-off.png') %>",
+        starOn: "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= book.star %>,
+      });
+    </script>
+    </div>
+  <% else %>
+  <div class="field row" id="star">
+    <%= f.label :star, "Rate" %>
+    <%= f.hidden_field :star, id: :review_star %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'book[star]',
+        half: true,
+      });
+    </script>
+  </div>
+  <% end %>
+
   <div class="actions row">
     <%= f.submit class: 'btn btn-primary col-xs-12'%>
   </div>
