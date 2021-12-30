@@ -68,3 +68,5 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem "dotenv-rails"
+
+gem 'chart-js-rails', '~> 0.1.4'
