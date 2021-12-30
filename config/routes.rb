@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	devise_for :users, controllers: {
     sessions: "public/sessions",
     registrations: "public/registrations"
@@ -26,6 +27,11 @@ Rails.application.routes.draw do
     member do
       post "join"
       delete "leave"
+    end
+    resources :mails, only: [:new, :create] do
+      member do
+        get "complete"
+      end
     end
   end
 

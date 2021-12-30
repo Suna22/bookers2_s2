@@ -1,0 +1,15 @@
+<%= form_with model:[group, mail], local:true do |f| %>
+  <div class="field row">
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title, class: 'col-xs-12 book_title' %>
+  </div>
+
+  <div class="field row">
+    <%= f.label :content, "Content" %>
+    <%= f.text_area :content, class: 'col-xs-12 book_body'%>
+  </div>
+
+  <div class="actions row">
+    <%= f.submit "送信", class: 'btn btn-success col-xs-12'%>
+  </div>
+<% end %>
