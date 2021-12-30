@@ -76,6 +76,17 @@
         });
     </script>
 
+    <div>
+      <%= form_with url: search_path, method: :get do |f| %>
+        <div class="field row">
+          <%= f.date_field :date, class: 'col-xs-12 book_title' %>
+          <%= f.submit "検索", class: 'btn btn-primary col-xs-12'%>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="result"></div>
+
   </div>
 
 </div>

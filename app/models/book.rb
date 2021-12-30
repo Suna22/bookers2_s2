@@ -10,7 +10,10 @@ class Book < ApplicationRecord
     Favorite.where(user_id: user.id, book_id: self.id).exists?
   end
 
-  def self.term(time1, time2=Time.current)
+  def self.term(time1, time2=nil)
+    unless time2
+      time2 = time1 + 1
+    end
     self.where("? < created_at and created_at < ?", time1, time2)
   end
 end
