@@ -17,6 +17,9 @@ class User < ApplicationRecord
   # フォローしている人
   has_many :relationships, foreign_key: "follower_id"
   has_many :followings, through: :relationships, source: :followee
+  
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
 
   def following?(another_user)
     self.followings.include?(another_user)
