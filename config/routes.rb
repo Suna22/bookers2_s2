@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :books do
     collection do
       get "sort"
+      get "tag_search"
     end
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create]
