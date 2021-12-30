@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_093427) do
+ActiveRecord::Schema.define(version: 2021_12_30_161258) do
 
   create_table "book_comments", force: :cascade do |t|
     t.integer "book_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_093427) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.float "star"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -37,6 +38,30 @@ ActiveRecord::Schema.define(version: 2020_02_19_093427) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_favorites_on_book_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "group_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
+    t.string "image_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mails", force: :cascade do |t|
+    t.integer "group_id"
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
